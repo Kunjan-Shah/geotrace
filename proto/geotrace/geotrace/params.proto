@@ -1,0 +1,12 @@
+syntax = "proto3";
+package geotrace.geotrace;
+
+import "gogoproto/gogo.proto";
+
+option go_package = "geotrace/x/geotrace/types";
+
+// Params defines the parameters for the module.
+message Params {
+  option (gogoproto.goproto_stringer) = false;
+  
+}

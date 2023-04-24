@@ -1,0 +1,12 @@
+syntax = "proto3";
+package geotrace.geotrace;
+
+import "gogoproto/gogo.proto";
+import "geotrace/geotrace/params.proto";
+
+option go_package = "geotrace/x/geotrace/types";
+
+// GenesisState defines the geotrace module's genesis state.
+message GenesisState {
+  Params params = 1 [(gogoproto.nullable) = false];
+}
