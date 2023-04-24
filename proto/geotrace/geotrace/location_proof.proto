@@ -1,0 +1,12 @@
+syntax = "proto3";
+package geotrace.geotrace;
+
+option go_package = "geotrace/x/geotrace/types";
+
+message LocationProof {
+  
+  string creator = 1; 
+  string lat = 2; 
+  string lon = 3; 
+  string timestamp = 4; 
+}

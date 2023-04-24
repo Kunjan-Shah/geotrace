@@ -24,7 +24,11 @@ var (
 )
 
 const (
-// this line is used by starport scaffolding # simapp/module/const
+	opWeightMsgAddLocationProof = "op_weight_msg_add_location_proof"
+	// TODO: Determine the simulation weight value
+	defaultWeightMsgAddLocationProof int = 100
+
+	// this line is used by starport scaffolding # simapp/module/const
 )
 
 // GenerateGenesisState creates a randomized GenState of the module
@@ -57,6 +61,17 @@ func (am AppModule) RegisterStoreDecoder(_ sdk.StoreDecoderRegistry) {}
 // WeightedOperations returns the all the gov module operations with their respective weights.
 func (am AppModule) WeightedOperations(simState module.SimulationState) []simtypes.WeightedOperation {
 	operations := make([]simtypes.WeightedOperation, 0)
+
+	var weightMsgAddLocationProof int
+	simState.AppParams.GetOrGenerate(simState.Cdc, opWeightMsgAddLocationProof, &weightMsgAddLocationProof, nil,
+		func(_ *rand.Rand) {
+			weightMsgAddLocationProof = defaultWeightMsgAddLocationProof
+		},
+	)
+	operations = append(operations, simulation.NewWeightedOperation(
+		weightMsgAddLocationProof,
+		geotracesimulation.SimulateMsgAddLocationProof(am.accountKeeper, am.bankKeeper, am.keeper),
+	))
 
 	// this line is used by starport scaffolding # simapp/module/operation
 

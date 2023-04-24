@@ -1,7 +1,19 @@
 syntax = "proto3";
+
 package geotrace.geotrace;
 
 option go_package = "geotrace/x/geotrace/types";
 
 // Msg defines the Msg service.
-service Msg {}
+service Msg {
+  rpc AddLocationProof (MsgAddLocationProof) returns (MsgAddLocationProofResponse);
+}
+message MsgAddLocationProof {
+  string creator   = 1;
+  string lat       = 2;
+  string lon       = 3;
+  string timestamp = 4;
+}
+
+message MsgAddLocationProofResponse {}
+
