@@ -1,0 +1,3 @@
+./geotraced tx geotrace add-location-proof A B 1 --from alice
+./geotraced keys list -----> get addr of alice
+./geotraced query geotrace show-location-proof <alice_addr>T1

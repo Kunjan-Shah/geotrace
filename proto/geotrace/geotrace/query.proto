@@ -1,26 +1,45 @@
 syntax = "proto3";
+
 package geotrace.geotrace;
 
 import "gogoproto/gogo.proto";
 import "google/api/annotations.proto";
 import "cosmos/base/query/v1beta1/pagination.proto";
 import "geotrace/geotrace/params.proto";
+import "geotrace/geotrace/location_proof.proto";
 
 option go_package = "geotrace/x/geotrace/types";
 
 // Query defines the gRPC querier service.
 service Query {
+  
   // Parameters queries the parameters of the module.
-  rpc Params(QueryParamsRequest) returns (QueryParamsResponse) {
+  rpc Params (QueryParamsRequest) returns (QueryParamsResponse) {
     option (google.api.http).get = "/geotrace/geotrace/params";
+  
+  }
+  
+  // Queries a list of ShowLocationProof items.
+  rpc ShowLocationProof (QueryShowLocationProofRequest) returns (QueryShowLocationProofResponse) {
+    option (google.api.http).get = "/geotrace/geotrace/show_location_proof/{id}";
+  
   }
 }
-
 // QueryParamsRequest is request type for the Query/Params RPC method.
 message QueryParamsRequest {}
 
 // QueryParamsResponse is response type for the Query/Params RPC method.
 message QueryParamsResponse {
+  
   // params holds all the parameters of this module.
   Params params = 1 [(gogoproto.nullable) = false];
 }
+
+message QueryShowLocationProofRequest {
+  string id = 1;
+}
+
+message QueryShowLocationProofResponse {
+  LocationProof locationProof = 1 [(gogoproto.nullable) = false];
+}
+

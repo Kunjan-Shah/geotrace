@@ -8,10 +8,10 @@ import (
 
 func (k msgServer) AddLocationProof(goCtx context.Context, msg *types.MsgAddLocationProof) (*types.MsgAddLocationProofResponse, error) {
 	ctx := sdk.UnwrapSDKContext(goCtx)
-	var locationProof  = types.LocationProof {
-		Creator: msg.Creator,
-		Lat: msg.Lat,
-		Lon: msg.Lon,
+	var locationProof = types.LocationProof{
+		Creator:   msg.Creator,
+		Lat:       msg.Lat,
+		Lon:       msg.Lon,
 		Timestamp: msg.Timestamp,
 	}
 	k.CreateLocationProof(ctx, locationProof)

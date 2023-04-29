@@ -19,5 +19,5 @@ func KeyPrefix(p string) []byte {
 }
 
 const (
-    LocationProofKey = "LocationProof/id/"
+	LocationProofKey = "LocationProof/id/"
 )
